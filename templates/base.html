@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+
+    <title>Researchdoor - {% block title %} organize your research group! {% endblock %}</title>
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+   <div class="navbar-inner">
+       <div class="container">
+           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+           </button>
+           <a class="brand" href="{% url 'index' %}">Researchdoor</a>
+
+           <div class="nav-collapse collapse">
+               <ul class="nav pull-right">
+                   {% if user.is_authenticated %}
+                    <li class="navbar-text">Hello, {{ user.username }}!</li>
+                    <li><a href="{% url 'logout' %}">Log out!</a></li>
+                    <li><a href="{% url 'account_info' username=user.username %}">Your profile</a></li>
+                   {% else %}
+                    <li><a href="{% url 'create_user_account' %}">Create account</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                   {% endif %}
+               </ul>
+               <ul class="nav">
+                   {% if user.is_authenticated %}
+                    <li><a href="{% url 'photo_upload' %}">Upload photo</a></li>
+                    <li><a href="{% url 'create_category' %}">Contribute</a></li>
+
+               {% endif %}
+                {% if user.is_authenticated and user.is_staff %}
+               <li><a href="{% url 'delete_comments' %}">Delete organization</a></li>
+               {% endif %}
+               </ul>
+           </div>
+           <!--/.nav-collapse -->
+       </div>
+   </div>
+</div>
+<!-- OK -->
+    <div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+   {% block sidebar %}
+   {% endblock %}
+   <div id="cats">
+   <h5> Welcome to our pug gallery!</h5>
+    <p>Browse, upload and comment pug photos!</p>
+       {% if cat_list %}
+           <h4>Category List</h4>
+           {% include 'categories.html' with cat_list=cat_list %}
+       {% endif %}
+    </div>
+</div>
+            <!--/.well -->
+        </div>
+        <!--/span-->
+        <div class="span9">
+            {% block body_block %}
+            {% endblock %}
+        </div>
+        <!--/span-->
+    </div>
+    <!--/row-->
+</div>
+<!--/.fluid-container-->
+
+<hr>
+
+    <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

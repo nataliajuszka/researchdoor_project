@@ -10,7 +10,7 @@ def logo_upload_path(instance, filename):
     return 'img/ngo/' + uuid4().hex + os.path.splitext(filename)[1]
 
 
-class Organization():
+class Organization(models.Model):
     description = models.TextField(blank=True, default="")
     creator = models.ForeignKey(User, related_name=("created_organizations"))
     date_created = models.DateTimeField(auto_now_add=True)

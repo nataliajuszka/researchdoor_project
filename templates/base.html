@@ -25,20 +25,20 @@
                    {% if user.is_authenticated %}
                     <li class="navbar-text">Hello, {{ user.username }}!</li>
                     <li><a href="{% url 'logout' %}">Log out!</a></li>
-                    <li><a href="{% url 'account_info' username=user.username %}">Your profile</a></li>
+                    <li><a href="{% url 'index' %}">Your profile</a></li>
                    {% else %}
-                    <li><a href="{% url 'create_user_account' %}">Create account</a></li>
+                    <li><a href="{% url 'registration' %}">Create account</a></li>
                     <li><a href="{% url 'login' %}">Login</a></li>
                    {% endif %}
                </ul>
                <ul class="nav">
                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'photo_upload' %}">Upload photo</a></li>
-                    <li><a href="{% url 'create_category' %}">Contribute</a></li>
+                    <li><a href="{% url 'index' %}">Upload photo</a></li>
+                    <li><a href="{% url 'index' %}">Contribute</a></li>
 
                {% endif %}
                 {% if user.is_authenticated and user.is_staff %}
-               <li><a href="{% url 'delete_comments' %}">Delete organization</a></li>
+               <li><a href="{% url 'index' %}">Delete organization</a></li>
                {% endif %}
                </ul>
            </div>
@@ -54,12 +54,8 @@
    {% block sidebar %}
    {% endblock %}
    <div id="cats">
-   <h5> Welcome to our pug gallery!</h5>
-    <p>Browse, upload and comment pug photos!</p>
-       {% if cat_list %}
-           <h4>Category List</h4>
-           {% include 'categories.html' with cat_list=cat_list %}
-       {% endif %}
+   <h5> Welcome to reaserachdoor!</h5>
+    <p>Browse research organizations!</p>
     </div>
 </div>
             <!--/.well -->

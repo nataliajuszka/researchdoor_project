@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+import views
 
 urlpatterns = patterns('',
     # Examples:
@@ -22,4 +23,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^user/', include('users.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', views.IndexView.as_view(), name="index"),
 )
+handler500 = 'views.custom_500'
+handler404 = 'views.custom_404'

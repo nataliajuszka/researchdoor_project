@@ -7,8 +7,11 @@ urlpatterns = patterns('',
     # url(r'^$', 'researchdoor_project.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^user/', include('users.urls')),
+    url(r'^organization/', include('organizations.urls')),
+    url(r'^user/', include('users.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.IndexView.as_view(), name="index"),
 
 )
-
+handler500 = 'views.custom_500'
+handler404 = 'views.custom_404'

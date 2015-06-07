@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<div class="hero-unit">
+    <h1>Login</h1>
+
+    <div class="container">
+    <form class="form-signin span4" id="login_form" method="post" action="">
+        <h2 class="form-signin-heading">Type your data</h2>
+        {% csrf_token %}
+
+        {% if bad_details %}
+        <p><strong>Wrong e-mail or password!</strong></p>
+        {% elif disabled_account %}
+        <p><strong>No active account.</strong></p>
+        {% endif %}
+
+        Username <input type="text" class="input-block-level" placeholder="Username" name="username" value=""
+                        size="50" />
+        <br />
+        Password <input type="password" class="input-block-level" placeholder="Password" name="password" value=""
+                        size="50" />
+        <br />
+        <button class="btn btn-primary" type="submit">Log in!</button>
+    </form>
+
+    </div>
+    <!-- /container -->
+</div>
+{% endblock %}

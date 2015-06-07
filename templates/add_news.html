@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block body_block %}
+    <div id="add-news-form" class="unit-30 unit-centered">
+        <h3 class="color-gray-light">Add news</h3>
+        <form action="" method="post" enctype="multipart/form-data" class="forms">
+
+        {% csrf_token %}
+        {% for non_field_error in form.non_field_errors %}
+            <span class="error">{{ non_field_error }}</span>
+        {% endfor %}
+
+
+        <label for="title">
+            Title. <span class="req">*</span>
+            {% if form.title.errors %}
+                <br />
+                {% for error in form.title.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+
+            {{ form.title }}
+        </label>
+
+            <h5>Public on groups:</h5>
+            {{ form.organizations }}
+        <br />
+        {{ form.content }}
+        <p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="button" value="Cancel" class="btn btn-primary" onClick="javascript:history.go(-1)"/>
+        </p>
+        </form>
+</div>
+{% endblock %}

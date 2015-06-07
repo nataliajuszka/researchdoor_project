@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<div class="hero-unit">
+
+    <div class="container">
+    <form class="form-signin span4" id="login_form" method="post" action="/user/send_update_profile/" enctype="multipart/form-data">
+        <h2 class="form-signin-heading">Update your profile</h2>
+        {% csrf_token %}
+
+        Description {{ form.description }}
+
+        Birth_date {{ form.birth_date }}
+
+        Avatar {{ form.avatar }}
+
+        <button class="btn btn-primary" type="submit">Update!</button>
+    </form>
+
+    </div>
+    <!-- /container -->
+</div>
+{% endblock %}

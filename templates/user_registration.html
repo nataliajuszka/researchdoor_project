@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block body_block %}
+<div class="hero-unit">
+    <h1>Make your account</h1>
+    <br />
+    <div class="container">
+        <form action="" method="post" enctype="multipart/form-data" class="forms">
+         <h2>Type your data</h2>
+            {% csrf_token %}
+            {% for non_field_error in form.non_field_errors %}
+                <span class="error">{{ non_field_error }}</span> <br />
+            {% endfor %}
+            <br />
+
+            <label for="email"> E-mail <span class="req">*</span>  <br />
+                {% if form.email.errors %}
+                    <br />
+                    {% for error in form.email.errors %}
+                        <span class="error">{{ error }}</span> <br />
+                    {% endfor %}
+                {% endif %}
+                {{ form.email }}
+            </label>
+
+            <label for="username"> Username <span class="req">*</span>  <br />
+                {% if form.username.errors %}
+                    <br />
+                    {% for error in form.username.errors %}
+                        <span class="error">{{ error }}</span> <br />
+                    {% endfor %}
+                {% endif %}
+                {{ form.username }}
+            </label>
+
+
+            <label for="first_name"> First name <span class="req">*</span>  <br />
+                {% if form.first_name.errors %}
+                    <br />
+                    {% for error in form.first_name.errors %}
+                        <span class="error">{{ error }}</span> <br />
+                    {% endfor %}
+                {% endif %}
+                {{ form.first_name }}
+            </label>
+
+            <label for="last_name"> Last name <span class="req">*</span>  <br />
+                {% if form.last_name.errors %}
+                    <br />
+                    {% for error in form.last_name.errors %}
+                        <span class="error">{{ error }}</span> <br />
+                    {% endfor %}
+                {% endif %}
+                {{ form.last_name }}
+            </label>
+
+            <label for="password">
+                Password <span class="req">*</span>  <br />
+                {% if form.password.errors %}
+                    <br />
+                    {% for error in form.password.errors %}
+                        <span class="error">{{ error }}</span> <br />
+                    {% endfor %}
+                {% endif %}
+                {{ form.password }}
+            </label>
+
+            <label for="password2">
+                Repeat password <span class="req">*</span> <br />
+                {% if form.password2.errors %}
+                    <br />
+                    {% for error in form.password2.errors %}
+                        <span class="error">{{ error }}</span> <br />
+                    {% endfor %}
+                {% endif %}
+                {{ form.password2 }}
+            </label>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="button" value="Cancel" class="btn btn-primary" onClick="javascript:history.go(-1)"/>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}

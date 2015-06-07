@@ -1,0 +1,150 @@
+
+
+{% load staticfiles %}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Profile </title>
+    <!-- BOOTSTRAP STYLE SHEET -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-fluid-adj.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+
+
+</head>
+<body>
+ <div class="navbar navbar-inverse navbar-fixed-top">
+   <div class="navbar-inner">
+       <div class="container">
+           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+           </button>
+           <a class="brand" href="{% url 'index' %}">Researchdoor</a>
+
+           <div class="nav-collapse.collapse">
+               <ul class="nav pull-right">
+                   {% if user.is_authenticated %}
+                    <li class="navbar-text">Hello, {{ user.username }}!</li>
+                    <li><a href="{% url 'logout' %}">Log out!</a></li>
+                    <li><a href="{% url 'update_profile' %}">Update your profile</a></li>
+                   {% else %}
+                    <li><a href="{% url 'registration' %}">Create account</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                   {% endif %}
+               </ul>
+           </div>
+           <!--/.nav-collapse -->
+       </div>
+   </div>
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="user-wrapper">
+                  <!-- <img src="~/PycharmProjects/project_researchgroups/img/avatars/user.jpg" class="img-responsive" />-->
+                   <img src="{{ UserProfile.avatar }}" class="img-responsive" />
+                    <div class="description">
+                        <h4 class="set-clr"><strong> {{ user.first_name }} {{ user.last_name }} </strong></h4>
+                        <h5><strong>status </strong></h5>
+                        <hr />
+                         <h3>Personal details</h3>
+                        <h4><strong>First name :</strong> </h4>
+                       {{ user.first_name }}
+                       <h4><strong>Last name :</strong> </h4>
+                       {{ user.first_name }}
+                        <h4><strong>Email :  </strong></h4>
+                        {{ user.email }}
+                        {% if UserProfile.birth_date %}
+                        <h4><strong>Birth date :</strong> </h4>
+                       {{ userProfile.birth_date }}
+                        {% endif %}
+                    </div>
+                </div>
+                <!--USER WRAPPER SECTION END-->
+            </div>
+            <!--LEFT SIDE SECTION END-->
+            <div class="col-md-9  user-wrapper">
+                <div class="description">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Description</h3>
+                            <hr />
+                            <p>
+                                {{ userProfile.description }}
+
+                            </p>
+                        </div>
+                    </div>
+                    <!--WHO AM I SECTION END-->
+
+                    <!--EDUCATION SECTION END-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Conferences : </h3>
+                            <hr />
+
+                            <br />
+                            <p>
+
+                            </p>
+                        </div>
+                    </div>
+                    <!--EXPERIENCE SECTION END-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Publications : </h3>
+                            <hr />
+
+                            </div>
+                        </div>
+
+
+                    <!--SKILL SECTION END-->
+
+                    <!--PROJECTS SECTION END-->
+                    <hr />
+
+                    <!--FOOTER SECTION END-->
+                </div>
+            </div>
+            <!--RIGHT SIDE SECTION END-->
+        </div>
+    </div>
+
+    <!-- CONATINER END -->
+
+
+
+    <!-- GOOGLE ADD SECTION END -->
+
+
+    <!-- REQUIRED SCRIPTS FILES -->
+    <!-- CORE JQUERY FILE -->
+    <script src="assets/js/jquery-1.11.1.js"></script>
+    <!-- REQUIRED BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.js"></script>
+    <!-- FANCYBOX SCRIPTS -->
+    <script src="assets/js/source/jquery.fancybox.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+</div>
+
+</body>
+
+
+</html>
